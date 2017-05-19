@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desolation.library.controller.RegistrationWindowController">
    <children>
@@ -56,12 +56,17 @@
             <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="121.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <Button fx:id="finishBtn" mnemonicParsing="false" prefHeight="32.0" prefWidth="137.0" text="Завершить" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+            <Label fx:id="loginErr" alignment="CENTER" contentDisplay="RIGHT" textAlignment="CENTER" textFill="#eb0b0b" GridPane.halignment="LEFT">
+               <font>
+                  <Font name="DejaVu Serif Bold" size="13.0" />
+               </font></Label>
          </children>
       </GridPane>
-      <ImageView fitHeight="230.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="162.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/note.png" />
          </image>
       </ImageView>
+      <Label fx:id="warningField" alignment="CENTER" contentDisplay="CENTER" layoutX="296.0" layoutY="42.0" prefHeight="57.0" prefWidth="219.0" textAlignment="CENTER" />
    </children>
 </Pane>

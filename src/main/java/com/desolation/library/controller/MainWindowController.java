@@ -30,7 +30,7 @@ public class MainWindowController implements Initializable, EventHandler<ActionE
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        SQLUtils.openConnection("root", "finished");
         registrationBtn.setOnAction(this);
     }    
     private final void openRegistrationWindow() throws IOException{
