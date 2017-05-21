@@ -38,7 +38,6 @@ public class SQLUtils {
     public static final ResultSet executeQuery(final String query) throws SQLException{
         Statement s = connection.createStatement();
         ResultSet result = s.executeQuery(query);
-        s.close();
         return result;
     }
     public static final boolean isLoginExist(final String login) throws SQLException{
@@ -52,11 +51,16 @@ public class SQLUtils {
             return true;
         else return false;        
     }
-    private final User signIn(final String login, final String password) throws SQLException{
+    public static final int signIn(final String login, final String password) throws SQLException{
         PreparedStatement ps = connection.prepareStatement("select signIn(?,?)");
         ps.setString(1, login);
         ps.setString(2, password);
-       return null;
+        ResultSet r = ps.executeQuery();
+        int result = -1;
+        while(r.next())
+            result = r.getInt(1);
+        
+       return result;
     }
     public static final boolean addUser(final String login, final String password, final User user) throws SQLException{
         String procedure = "{call addAccount(?,?,?,?,?,?,?,?)}";

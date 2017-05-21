@@ -1,0 +1,13 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    
+}
+.scrrolPane{
+    -fx-background-color: transparent;
+}
+.list{
+    -fx-background-color: transparent;
+}

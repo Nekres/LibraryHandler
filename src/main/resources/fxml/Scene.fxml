@@ -34,7 +34,7 @@
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="userRB" layoutX="116.0" layoutY="292.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="132.0" selected="true" text="Пользователь" toggleGroup="$radio_group" />
-      <Label fx:id="warningField" alignment="TOP_LEFT" layoutX="289.0" layoutY="242.0" prefHeight="54.0" prefWidth="99.0" />
+      <Label fx:id="warningField" alignment="TOP_LEFT" layoutX="289.0" layoutY="242.0" prefHeight="54.0" prefWidth="219.0" />
       <PasswordField fx:id="passwordField" layoutX="116.0" layoutY="355.0" />
     </children>
 </AnchorPane>

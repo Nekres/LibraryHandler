@@ -53,12 +53,12 @@ public class RegistrationWindowController implements Initializable,EventHandler<
     @FXML Label loginErr;
     @FXML Label warningField;
     @FXML ProgressBar progressBar;
+    @FXML Label greetingLabel;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         finishBtn.setOnAction(this);
         loginField.textProperty().addListener(new ChangeListener<String>(){
             @Override
@@ -113,7 +113,7 @@ public class RegistrationWindowController implements Initializable,EventHandler<
           SQLUtils.addUser("root", "finished", u);
             for(int i = 0; i< 100;i++)
                 progressBar.setProgress(i);
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Завершено.");
                 alert.setContentText("Аккаунт " + "some" + "успешно создан");
                 alert.showAndWait().ifPresent(new Consumer<ButtonType>(){
