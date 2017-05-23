@@ -13,7 +13,6 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
-        setUserAgentStylesheet(STYLESHEET_CASPIAN);
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         

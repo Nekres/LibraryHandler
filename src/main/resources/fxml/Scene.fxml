@@ -14,8 +14,8 @@
 <AnchorPane id="AnchorPane" prefHeight="404.0" prefWidth="514.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desolation.library.controller.MainWindowController">
     <children>
       <TextField fx:id="loginField" layoutX="116.0" layoutY="319.0" prefHeight="26.0" prefWidth="171.0" />
-      <Button fx:id="signInBtn" layoutX="291.0" layoutY="355.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="108.0" text="Вход" />
-      <Button fx:id="registrationBtn" layoutX="291.0" layoutY="318.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="108.0" text="Регистрация" />
+      <Button fx:id="signInBtn" focusTraversable="false" layoutX="291.0" layoutY="355.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Вход" />
+      <Button fx:id="registrationBtn" focusTraversable="false" layoutX="291.0" layoutY="318.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Регистрация" />
       <ImageView fitHeight="202.0" fitWidth="265.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/book-vector.jpg" />
@@ -27,13 +27,13 @@
          </font>
       </Label>
       <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="323.0" prefHeight="17.0" prefWidth="76.0" text="Логин" />
-      <Label alignment="CENTER_RIGHT" layoutX="46.0" layoutY="359.0" prefHeight="17.0" prefWidth="49.0" text="Пароль" />
-      <RadioButton fx:id="adminRB" layoutX="116.0" layoutY="268.0" mnemonicParsing="false" text="Администратор">
+      <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="359.0" prefHeight="17.0" prefWidth="60.0" text="Пароль" />
+      <RadioButton fx:id="adminRB" focusTraversable="false" layoutX="116.0" layoutY="268.0" mnemonicParsing="false" text="Администратор">
          <toggleGroup>
             <ToggleGroup fx:id="radio_group" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="userRB" layoutX="116.0" layoutY="292.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="132.0" selected="true" text="Пользователь" toggleGroup="$radio_group" />
+      <RadioButton fx:id="userRB" focusTraversable="false" layoutX="116.0" layoutY="292.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="132.0" selected="true" text="Пользователь" toggleGroup="$radio_group" />
       <Label fx:id="warningField" alignment="TOP_LEFT" layoutX="289.0" layoutY="242.0" prefHeight="54.0" prefWidth="219.0" />
       <PasswordField fx:id="passwordField" layoutX="116.0" layoutY="355.0" />
     </children>

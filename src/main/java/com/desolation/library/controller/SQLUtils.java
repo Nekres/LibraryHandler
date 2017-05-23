@@ -6,17 +6,7 @@
 package com.desolation.library.controller;
 
 import com.desolation.library.model.User;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.*;
 
 /**
  *
@@ -39,6 +29,11 @@ public class SQLUtils {
         Statement s = connection.createStatement();
         ResultSet result = s.executeQuery(query);
         return result;
+    }
+    public static final int update(final String query) throws SQLException{
+        Statement s = connection.createStatement();
+        int r = s.executeUpdate(query);
+        return r;
     }
     public static final boolean isLoginExist(final String login) throws SQLException{
         PreparedStatement s = connection.prepareStatement("select isLoginExist(?)");

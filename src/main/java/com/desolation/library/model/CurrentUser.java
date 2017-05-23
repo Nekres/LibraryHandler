@@ -8,8 +8,8 @@ package com.desolation.library.model;
 import com.desolation.library.controller.SQLUtils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.*;
 
 /**
  *
@@ -17,7 +17,7 @@ import javafx.collections.ObservableList;
  */
 public class CurrentUser{
     private final int user_id;
-    ObservableList<String> books = FXCollections.observableArrayList();
+    ObservableList<Book> books = FXCollections.observableArrayList();
 
     public CurrentUser(int user_id) throws SQLException {
         this.user_id = user_id;
@@ -25,13 +25,17 @@ public class CurrentUser{
     }
     
     private final void loadBooks() throws SQLException{
-        ResultSet set = SQLUtils.executeQuery("SELECT book_name FROM book b WHERE b.book_owner = "+user_id);
-        while(set.next())
-            books.add(set.getString(1));
+        ResultSet set = SQLUtils.executeQuery("SELECT book_name, book_id FROM book b WHERE b.book_owner = "+user_id);
+        while(set.next()){
+            Book book = new Book();
+            book.setName(new SimpleStringProperty(set.getString(1)));
+            book.setBook_id(set.getInt(2));
+            books.add(book);
+        }
         set.close();
     }
 
-    public ObservableList<String> getBooks() {
+    public ObservableList<Book> getBooks() {
         return books;
     }
     
