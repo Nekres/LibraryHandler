@@ -37,6 +37,7 @@ public class MainWindowController implements Initializable, EventHandler<ActionE
         SQLUtils.openConnection("root", "finished");
         registrationBtn.setOnAction(this);
         signInBtn.setOnAction(this);
+        
     }    
     private final void openRegistrationWindow() throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/registrationWindow.fxml"));
@@ -70,6 +71,19 @@ public class MainWindowController implements Initializable, EventHandler<ActionE
             ex.printStackTrace();
         }
     }
+    private final void logAsRoot(final String login, final String password) throws IOException{
+        boolean success = SQLUtils.openConnection(login, password);
+        if(success){
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/AdministratorPage.fxml"));
+            Stage s = new Stage();
+            s.setTitle("Панель администратора");
+            Scene scene = new Scene(root);
+            s.setScene(scene);
+            s.initModality(Modality.WINDOW_MODAL);
+            s.initOwner(warningField.getScene().getWindow());
+            s.show();
+        }
+    }
 
     @Override
     public void handle(ActionEvent event) {
@@ -80,9 +94,13 @@ public class MainWindowController implements Initializable, EventHandler<ActionE
                 ex.printStackTrace();
             }
         }
-        if(event.getSource() == signInBtn){
+        if (event.getSource() == signInBtn) {
             try {
-                checkOnUserExist(loginField.getText(), passwordField.getText());
+                if (userRB.isSelected()) {
+                    checkOnUserExist(loginField.getText(), passwordField.getText());
+                } else {
+                    logAsRoot(loginField.getText(), passwordField.getText());
+                }
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

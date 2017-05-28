@@ -8,31 +8,14 @@ package com.desolation.library.controller;
 import com.desolation.library.model.User;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.beans.value.*;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.util.converter.LocalDateStringConverter;
 
 /**
  * FXML Controller class
@@ -107,7 +90,7 @@ public class RegistrationWindowController implements Initializable,EventHandler<
             return;
         }
         User u = new User(loginField.getText(), passField.getText(), nameField.getText(), surnameField.getText(),patField.getText(),addressField.getText()
-                ,phoneField.getText(), datePicker.getValue().format(DateTimeFormatter.ISO_DATE));
+                ,phoneField.getText(), datePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE));
         try {
  
           SQLUtils.addUser("root", "finished", u);

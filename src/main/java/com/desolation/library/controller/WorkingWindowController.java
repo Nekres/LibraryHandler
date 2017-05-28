@@ -8,17 +8,17 @@ package com.desolation.library.controller;
 import com.desolation.library.model.*;
 import java.net.URL;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.*;
-import javafx.concurrent.Task;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import java.util.Date;
 
 /**
  * FXML Controller class
@@ -68,7 +68,7 @@ public class WorkingWindowController implements Initializable,EventHandler<Actio
         
     }
     private final void getAllBooks() throws SQLException{
-        ResultSet set = SQLUtils.executeQuery("SELECT b.book_name, a.author_name, a.author_surname, b.book_id FROM book b INNER JOIN author a ON b.author_id = a.author_id;");
+        ResultSet set = SQLUtils.executeQuery("SELECT b.book_name, a.author_name, a.author_surname, b.book_id FROM book b INNER JOIN author a ON b.author_id = a.author_id WHERE b.book_owner IS NULL;");
             while(set.next()){
                 Book book = new Book();
                 for(int i = 0; i < 4;i++){
@@ -88,10 +88,16 @@ public class WorkingWindowController implements Initializable,EventHandler<Actio
             set.close();
     }
     private final void returnBook(){
+        if(bookList.getSelectionModel().getSelectedItem() == null)
+            return;
         Book b = bookList.getSelectionModel().getSelectedItem();
         bookList.getItems().remove(b);
         try {
             SQLUtils.update("UPDATE book SET book_owner = null WHERE book_id = " + b.getBook_id());
+            String date = new java.sql.Date(new Date().getTime()).toLocalDate().format(DateTimeFormatter.ISO_DATE);
+            System.out.println(date);
+            SQLUtils.update("INSERT INTO action(user_id,book_id,action_type,action_date) VALUES(" + user.getUser_id() + "," + b.getBook_id() + "," +"\"return\"," + "\""+ date + "\")");
+            tableView.getItems().add(b);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -130,7 +136,9 @@ public class WorkingWindowController implements Initializable,EventHandler<Actio
         } else{
         user.getBooks().add(book);
             try {
+                String date = new java.sql.Date(new Date().getTime()).toLocalDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
                 SQLUtils.update("UPDATE book SET book_owner = " + USER_ID + " WHERE book_id = " + book.getBook_id());
+                SQLUtils.update("INSERT INTO action(user_id,book_id,action_type,action_date) VALUES(" + user.getUser_id() + "," + book.getBook_id() + "," +"\"get\"," + "\""+ date + "\")");
                 data.remove(book);
             } catch (SQLException ex) {
                 ex.printStackTrace();

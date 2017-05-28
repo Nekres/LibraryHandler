@@ -1,0 +1,31 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    
+}
+.scrrolPane{
+    -fx-background-color: transparent;
+}
+.list{
+    -fx-background-color: transparent;
+}
+.authorName{
+    -fx-background-color:transparent;
+}
+.table{
+    -fx-background-color:transparent;
+}
+.table.table-cell{
+    -fx-text-fill: red;
+}
+.table-row-cell{
+    -fx-background-color:transparent;
+}
+.table-row-cell:selected{
+    -fx-background-color:gray;
+}
+.table .column-header{
+    -fx-background-color:grey;
+}

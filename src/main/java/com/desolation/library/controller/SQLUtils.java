@@ -57,6 +57,9 @@ public class SQLUtils {
         
        return result;
     }
+    public static final void insert(final String query){
+        
+    }
     public static final boolean addUser(final String login, final String password, final User user) throws SQLException{
         String procedure = "{call addAccount(?,?,?,?,?,?,?,?)}";
         CallableStatement cs = connection.prepareCall(procedure);
