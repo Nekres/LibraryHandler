@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.desolation.library.controller;
 
 import com.desolation.library.model.User;
@@ -20,7 +15,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Qosmio
+ * @author desolation
  */
 public class RegistrationWindowController implements Initializable,EventHandler<ActionEvent> {
     @FXML TextField loginField;
@@ -98,7 +93,7 @@ public class RegistrationWindowController implements Initializable,EventHandler<
                 progressBar.setProgress(i);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Завершено.");
-                alert.setContentText("Аккаунт " + "some" + "успешно создан");
+                alert.setContentText("Аккаунт " + u.getLogin() + " успешно создан");
                 alert.showAndWait().ifPresent(new Consumer<ButtonType>(){
                     @Override
                     public void accept(ButtonType t) {

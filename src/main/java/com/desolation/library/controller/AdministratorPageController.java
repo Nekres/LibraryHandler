@@ -15,11 +15,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.*;
 import javafx.fxml.*;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -43,6 +45,19 @@ public class AdministratorPageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        deleteUser.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("/fxml/delete.fxml"));
+                    Stage window = new Stage();
+                    window.setScene(new Scene(root));
+                    window.show();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         addUser.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
